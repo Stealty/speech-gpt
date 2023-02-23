@@ -1,36 +1,35 @@
 <!-- eslint-disable no-undef -->
 <script setup>
-import askOpenAi from "../api/index";
+import { useSpeechRecognition } from "@vueuse/core";
+import { useSpeechSynthesis } from "@vueuse/core";
+import { watch } from "vue";
+import { askOpenAi } from "../api/openai";
 
-const SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
+const { isFinal, result, start } = useSpeechRecognition({
+  lang: "pt-BR",
+  continuous: false,
+});
 
-const recognition = new SpeechRecognition();
-// recognition.continuous = true;
-recognition.lang = "pt-BR";
-recognition.interimResults = false;
-recognition.maxAlternatives = 1;
+const { isPlaying, utterance, speak } = useSpeechSynthesis();
 
-recognition.onresult = (event) => {
-  console.log(event.results[0][0].transcript);
-};
+watch(isFinal, async () => {
+  await askOpenAi(result.value).then((result) => {
+    utterance.value.text = result.replace("?\n\n", "").trim();
+    utterance.value.lang = "pt-BR";
+    speak();
+  });
+});
 
-recognition.onspeechend = () => {
-  recognition.stop();
-  console.log("Stopped");
-};
-
-function recog() {
-  recognition.start();
-  console.log(recognition);
-}
+watch(isPlaying, () => {
+  start();
+});
 </script>
 
 <template>
-  <div></div>
-  <div></div>
-  <div></div>
   <main>
-    <button @click="recog">Recognyze</button>
-    <button @click="askOpenAi">Ask openai</button>
+    <button @click="start()">Ask something</button>
+    <div>{{ result }}</div>
+    <div>{{ isFinal }}</div>
+    <div>{{ isPlaying }}</div>
   </main>
 </template>

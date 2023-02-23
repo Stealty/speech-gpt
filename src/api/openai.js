@@ -1,19 +1,21 @@
 /* eslint-disable prettier/prettier */
 
 import { Configuration, OpenAIApi } from "openai";
+
 const configuration = new Configuration({
-  apiKey: "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",
+  apiKey: import.meta.env.VITE_OPENAI_API_KEY,
 });
 const openai = new OpenAIApi(configuration);
 
-export const askOpenAi = async () => {
+export const askOpenAi = async (prompt) => {
   const response = await openai.createCompletion({
     model: "text-davinci-003",
-    prompt: "Say this is a test",
-    max_tokens: 7,
-    temperature: 0,
+    prompt: prompt,
+    max_tokens: 2000,
+    temperature: 0.2,
   });
 
-  console.log(response.data.choices[0].text);
+  const text = response.data.choices[0].text;
+
+  return text;
 };
-export default askOpenAi;
