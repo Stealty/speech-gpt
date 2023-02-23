@@ -1,8 +1,8 @@
+<!-- eslint-disable no-undef -->
 <script setup>
+import askOpenAi from "../api/index";
+
 const SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
-const SpeechGrammarList = window.SpeechGrammarList || webkitSpeechGrammarList;
-const SpeechRecognitionEvent =
-  window.SpeechRecognitionEvent || webkitSpeechRecognitionEvent;
 
 const recognition = new SpeechRecognition();
 // recognition.continuous = true;
@@ -29,5 +29,8 @@ function recog() {
   <div></div>
   <div></div>
   <div></div>
-  <main><button @click="recog">Recognyze</button></main>
+  <main>
+    <button @click="recog">Recognyze</button>
+    <button @click="askOpenAi">Ask openai</button>
+  </main>
 </template>
