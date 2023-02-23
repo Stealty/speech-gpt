@@ -2,34 +2,35 @@
 <script setup>
 import { useSpeechRecognition } from "@vueuse/core";
 import { useSpeechSynthesis } from "@vueuse/core";
-import { watch } from "vue";
 import { askOpenAi } from "../api/openai";
+import { ref } from "vue";
 
-const { isFinal, result, start } = useSpeechRecognition({
-  lang: "pt-BR",
+const { result, start, recognition, stop, isListening } = useSpeechRecognition({
+  lang: navigator.language,
   continuous: false,
 });
 
-const { isPlaying, utterance, speak } = useSpeechSynthesis();
+const { utterance, speak } = useSpeechSynthesis();
 
-watch(isFinal, async () => {
-  await askOpenAi(result.value).then((result) => {
+const utterranceRef = ref(utterance.value.text);
+
+recognition.onend = () => {
+  askOpenAi(result.value).then((result) => {
     utterance.value.text = result.replace("?\n\n", "").trim();
-    utterance.value.lang = "pt-BR";
+    utterance.value.lang = navigator.language;
+    utterranceRef.value = result.replace("?\n\n", "").trim();
     speak();
+    console.log(utterance);
   });
-});
-
-watch(isPlaying, () => {
-  start();
-});
+  stop();
+};
 </script>
 
 <template>
   <main>
-    <button @click="start()">Ask something</button>
+    <button @click="start">Press to talk</button>
     <div>{{ result }}</div>
-    <div>{{ isFinal }}</div>
-    <div>{{ isPlaying }}</div>
+    <div>{{ utterranceRef }}</div>
+    <div v-if="isListening">Whe are listening you</div>
   </main>
 </template>
