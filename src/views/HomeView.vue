@@ -81,8 +81,11 @@ recognition.onend = () => {
   }
 
   &__buttons {
+    position: absolute;
     display: flex;
     gap: 3rem;
+    widows: 100%;
+    bottom: 10%;
   }
 }
 </style>
