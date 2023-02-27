@@ -6,7 +6,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.post("/", async (req, res) => {
+app.post("/api", async (req, res) => {
   const configuration = new Configuration({
     apiKey: req.body.apiKey,
   });
