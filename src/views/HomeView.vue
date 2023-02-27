@@ -76,16 +76,14 @@ recognition.onend = () => {
   &__main {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
     gap: 1rem;
   }
 
   &__buttons {
-    position: absolute;
     display: flex;
     gap: 3rem;
-    widows: 100%;
-    bottom: 10%;
   }
 }
 </style>
