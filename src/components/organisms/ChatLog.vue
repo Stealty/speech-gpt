@@ -20,7 +20,7 @@ const props = defineProps({
 <style scoped lang="scss">
 .log {
   width: 100%;
-  height: calc(86vh - 150px);
+  height: calc(80vh - 150px);
   overflow: hidden;
   padding: 1rem 0;
 
