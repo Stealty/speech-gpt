@@ -6,11 +6,16 @@
     "dev": "vite --host",
     "build": "vite build",
     "preview": "vite preview",
+    "server": "nodemon server ./src/api/server.js",
     "test:unit": "vitest --environment jsdom --root src/",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
+  "type": "module",
   "dependencies": {
     "@vueuse/core": "^9.13.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "nodemon": "^2.0.20",
     "openai": "^3.1.0",
     "pinia": "^2.0.28",
     "sass": "^1.58.3",
