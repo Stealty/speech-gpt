@@ -39,6 +39,7 @@ recognition.onend = () => {
           answer: data.bot,
         });
         speak();
+        result.value = "";
       })
       .catch((error) => console.error(error));
   } else {
