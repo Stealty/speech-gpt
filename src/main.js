@@ -10,7 +10,22 @@ import "./styles/main.scss";
 
 const app = createApp(App);
 
-app.use(createVuestic());
+const darkTheme = {
+  primary: "#486284",
+  secondary: "#8ca2c0",
+  tertiary: "#9cb0c9",
+  quarternary: "#eff2f6",
+};
+
+app.use(
+  createVuestic({
+    config: {
+      colors: {
+        variables: darkTheme,
+      },
+    },
+  })
+);
 app.use(createPinia());
 app.use(router);
 
