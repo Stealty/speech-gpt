@@ -21,7 +21,7 @@ const chatLog = ref([]);
 recognition.onend = () => {
   const voices = window.speechSynthesis.getVoices();
   if (result.value.length > 0) {
-    fetch("/api", {
+    fetch("https://speech-gpt-server.vercel.app/api", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
