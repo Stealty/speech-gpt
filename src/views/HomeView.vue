@@ -21,7 +21,7 @@ const chatLog = ref([]);
 recognition.onend = () => {
   const voices = window.speechSynthesis.getVoices();
   if (result.value.length > 0) {
-    fetch("http://localhost:5000", {
+    fetch("/api", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
