@@ -1,4 +1,4 @@
-import { useChatStore } from "../stores/chatStore";
+import { useChatStore } from "@stores/chatStore";
 
 const useOpenAI = (result, voice) => {
   const { addLog } = useChatStore();
