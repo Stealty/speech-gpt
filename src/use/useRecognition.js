@@ -16,6 +16,7 @@ const useRecognition = () => {
     } else {
       alert("Say something...");
     }
+    stop();
   };
 
   return { start, stop, isListening };
