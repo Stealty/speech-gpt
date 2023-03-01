@@ -19,7 +19,6 @@ const { chatLog } = useChatStore();
   <main class="home__main">
     <ChatLog :chat-log="chatLog" />
     <Mic :is-listening="isListening" />
-    <button :on-click="useRecognition">asdasd</button>
     <div class="home__buttons">
       <Button name="Press to talk" :click="start" />
       <Button name="Press to stop talking" :click="stop" />
