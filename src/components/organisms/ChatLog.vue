@@ -1,6 +1,6 @@
 <script setup>
-import Time from "../atoms/Time.vue";
-import Card from "../molecules/ChatCard.vue";
+import Time from "@atoms/Time.vue";
+import Card from "@molecules/ChatCard.vue";
 const props = defineProps({
   chatLog: Array,
 });

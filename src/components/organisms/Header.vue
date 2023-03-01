@@ -1,4 +1,6 @@
 <script setup>
+import ThemeSwitcher from "@molecules/ThemeSwitcher.vue";
+
 const props = defineProps({
   title: String,
   description: String,
@@ -11,6 +13,7 @@ const props = defineProps({
     <p class="header__description">
       {{ description }}
     </p>
+    <ThemeSwitcher />
   </header>
 </template>
 

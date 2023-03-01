@@ -6,7 +6,7 @@ import "vuestic-ui/css";
 import App from "./App.vue";
 import router from "./router";
 
-import "./styles/main.scss";
+import "@styles/main.scss";
 
 const app = createApp(App);
 
