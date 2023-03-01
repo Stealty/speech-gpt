@@ -1,9 +1,9 @@
 <script setup>
-import Mic from "../components/icons/Mic.vue";
-import Button from "../components/atoms/Button.vue";
-import Header from "../components/organisms/Header.vue";
-import ChatLog from "../components/organisms/ChatLog.vue";
-import { useChatStore } from "../stores/chatStore";
+import Mic from "@icons/Mic.vue";
+import Button from "@atoms/Button.vue";
+import Header from "@organisms/Header.vue";
+import ChatLog from "@organisms/ChatLog.vue";
+import { useChatStore } from "@stores/chatStore";
 import useRecognition from "@use/useRecognition";
 
 const { start, stop, isListening } = useRecognition();

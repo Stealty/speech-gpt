@@ -1,5 +1,5 @@
 <script setup>
-import ThemeSwitcher from "../molecules/ThemeSwitcher.vue";
+import ThemeSwitcher from "@molecules/ThemeSwitcher.vue";
 
 const props = defineProps({
   title: String,

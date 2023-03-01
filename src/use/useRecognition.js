@@ -1,5 +1,5 @@
 import { useSpeechRecognition } from "@vueuse/core";
-import useOpenAI from "../use/useOpenAI";
+import useOpenAI from "@use/useOpenAI";
 
 const useRecognition = () => {
   const { result, start, recognition, stop, isListening } =
