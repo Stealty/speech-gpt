@@ -11,7 +11,8 @@ const props = defineProps({
     <ul class="log__list">
       <li class="log__listItem" :key="log" v-for="log in chatLog">
         <Time :time="log.time" />
-        <Card :log="log" />
+        <Card username="You" :content="log.question" />
+        <Card username="SpeechGPT" :content="log.answer" />
       </li>
     </ul>
   </section>
