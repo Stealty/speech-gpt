@@ -7,8 +7,14 @@ const props = defineProps({
 
 <template>
   <va-card class="card">
-    <va-card-title class="card__user">{{ username }}:</va-card-title>
-    <va-card-content class="card__content">
+    <VaSkeletonGroup v-if="!content" animation="wave" :delay="0">
+      <VaSkeleton />
+    </VaSkeletonGroup>
+
+    <va-card-title v-if="content" class="card__user"
+      >{{ username }}:</va-card-title
+    >
+    <va-card-content v-if="content" class="card__content">
       {{ content }}
     </va-card-content>
   </va-card>

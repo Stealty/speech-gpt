@@ -1,7 +1,17 @@
 import { useChatStore } from "@stores/chatStore";
 
 const useOpenAI = (result, voice) => {
-  const { addLog } = useChatStore();
+  const date = new Date();
+  const { addLog, updateLog } = useChatStore();
+
+  const log = {
+    time: date,
+    question: result.value,
+    answer: "",
+    id: date.getTime(),
+  };
+
+  addLog(log);
 
   fetch("https://speech-gpt-server.vercel.app/api", {
     method: "POST",
@@ -15,13 +25,7 @@ const useOpenAI = (result, voice) => {
   })
     .then((response) => response.json())
     .then(async (data) => {
-      const log = {
-        time: new Date(),
-        question: result.value,
-        answer: data.bot,
-      };
-
-      addLog(log, voice);
+      updateLog(log.id, data.bot);
 
       result.value = "";
     })
