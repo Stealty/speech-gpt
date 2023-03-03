@@ -1,23 +1,21 @@
 <script setup>
 const props = defineProps({
-  log: {
-    question: String,
-    answer: String,
-  },
+  username: String,
+  content: String,
 });
 </script>
 
 <template>
   <va-card class="card">
-    <va-card-title class="card__user">You:</va-card-title>
-    <va-card-content class="card__content">
-      {{ log.question }}
-    </va-card-content>
-  </va-card>
-  <va-card class="card">
-    <va-card-title class="card__user">SpeechGPT:</va-card-title>
-    <va-card-content class="card__content">
-      {{ log.answer }}
+    <VaSkeletonGroup v-if="!content" animation="wave" :delay="0">
+      <VaSkeleton />
+    </VaSkeletonGroup>
+
+    <va-card-title v-if="content" class="card__user"
+      >{{ username }}:</va-card-title
+    >
+    <va-card-content v-if="content" class="card__content">
+      {{ content }}
     </va-card-content>
   </va-card>
 </template>

@@ -3,7 +3,7 @@ import { ref } from "vue";
 import { useDateFormat } from "@vueuse/core";
 
 const props = defineProps({
-  time: Number,
+  time: Date,
 });
 
 const timeRef = ref(useDateFormat(props.time, "HH:mm:ss"));

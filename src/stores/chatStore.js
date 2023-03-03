@@ -8,12 +8,21 @@ export const useChatStore = defineStore("chat", () => {
   const chatLog = ref([]);
 
   function addLog(log, voice) {
-    utterance.value.text = log.answer;
+    this.chatLog.unshift(log);
     utterance.value.lang = "en-US";
     utterance.value.voice = voice;
-    this.chatLog.unshift(log);
+  }
+
+  function updateLog(identifier, answer) {
+    const logIndex = this.chatLog.findIndex((log) => {
+      return log.id === identifier;
+    });
+
+    this.chatLog[logIndex].answer = answer;
+
+    utterance.value.text = answer;
     speak();
   }
 
-  return { chatLog, addLog };
+  return { chatLog, addLog, updateLog };
 });
